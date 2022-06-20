@@ -22,7 +22,11 @@ namespace gestor_de_estoque
 
         public void Exibir()
         {
-            
+            Console.WriteLine($"Nome: {nome}");
+            Console.WriteLine($"Autor: {frete}");
+            Console.WriteLine($"Preço: {preco}");
+            Console.WriteLine($"Vagas restantes: {estoque}");
+            Console.WriteLine("=============================");
         }
 
         public void RegistrarEntrada()

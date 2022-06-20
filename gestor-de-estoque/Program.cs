@@ -8,6 +8,10 @@ namespace gestor_de_estoque
 {
     class Program
     {
+        static List<IEstoque> produtos = new List<IEstoque>();
+        //"static" porque os métodos/funções que criamos para cadastrar os produtos são estáticos.
+        //Tipo "IEstoque" porque a lista irá aceitar qualquer tipo de dado que respeite o contrato imposto pela interface. Assim, qualquer classe nova que criarmos poderá cadastrar novos produtos sem problemas, ja que estarão inseridas na interface.
+
         enum Menu { Listar = 1, Adicionar, Remover, Entrada, Saida, Sair}
         static void Main(string[] args)
         {
@@ -49,6 +53,38 @@ namespace gestor_de_estoque
 
                 
             }
+        }
+
+        static void Cadastro() //Método principal para o cadastramento geral de produtos.
+        {
+            Console.WriteLine("Cadastro de Produto");
+            Console.WriteLine("1 - Produto Físico\n2 - Ebook\n3 - Curso");
+            string opStr = Console.ReadLine();
+            int escolhaInt = int.Parse(opStr);
+
+            switch (escolhaInt)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+        }
+        //Métodos secundários para o cadastramento de cada produto
+        static void CadastrarPFisico()
+        {
+            Console.WriteLine("CADASTRO DE PRODUTO FÍSICO");
+            Console.WriteLine("Nome do produto: ");
+            string nome = Console.ReadLine();
+            Console.WriteLine("Preço unitário: ");
+            float preco = float.Parse(Console.ReadLine());
+            Console.WriteLine("Frete: ");
+            float frete = float.Parse(Console.ReadLine());
+
+            ProdutoFisico pf = new ProdutoFisico(nome, preco, frete);
+            produtos.Add(pf);
         }
     }
 }
