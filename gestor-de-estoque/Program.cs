@@ -23,7 +23,7 @@ namespace gestor_de_estoque
 
                 if (opInt > 0 && opInt < 7) //Validação da escolha no menu
                 {
-                    Menu escolha = (Menu)opInt; //Casting para converter o numero digitado em uma opção do menu que será interpretada no switch abaixo.
+                    Menu escolha = (Menu)opInt; //Casting para converter o numero inteiro digitado em uma opção/índice do menu (Enum) que será interpretada no switch abaixo.
 
                     switch (escolha)
                     {
