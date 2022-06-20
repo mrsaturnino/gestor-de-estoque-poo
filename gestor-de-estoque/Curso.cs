@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace gestor_de_estoque
 {
-    class Curso : Produto
+    class Curso : Produto, IEstoque
     {
         public string autor;
         private int vagas; //Segue-se a mesma lógica das outras classes filhas.
@@ -17,6 +17,21 @@ namespace gestor_de_estoque
             this.preco = preco;
             this.autor = autor;
 
+        }
+
+        public void Exibir()
+        {
+            
+        }
+
+        public void RegistrarEntrada()
+        {
+            
+        }
+
+        public void RegistrarSaida()
+        {
+            
         }
     }
 }

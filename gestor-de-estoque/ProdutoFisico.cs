@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace gestor_de_estoque
 {
-    class ProdutoFisico : Produto //ProdutoFisico é um tipo de produto e também uma classe Filha da classe Pai "Produto".
+    //ProdutoFisico é um tipo de produto e também uma classe Filha da classe Pai "Produto".
+    class ProdutoFisico : Produto, IEstoque 
     {
         public float frete;
         private int estoque; //Está como "private" para que esta variável não seja alterada acidentalmente, passando assim por uma "validação" para ser alterada.
@@ -17,6 +18,21 @@ namespace gestor_de_estoque
             this.preco = preco;
             this.frete = frete;
 
+        }
+
+        public void Exibir()
+        {
+            
+        }
+
+        public void RegistrarEntrada()
+        {
+            
+        }
+
+        public void RegistrarSaida()
+        {
+            
         }
     }
 }

@@ -21,7 +21,7 @@ namespace gestor_de_estoque
                 string opStr = Console.ReadLine();
                 int opInt = int.Parse(opStr);
 
-                if (opInt > 0 && opInt < 7) //Validação da escolha no menu
+                if (opInt > 0 && opInt < 7) //Validação da escolha no menu, para evitar que o usuario insira um numero diferente dos disponiveis.
                 {
                     Menu escolha = (Menu)opInt; //Casting para converter o numero inteiro digitado em uma opção/índice do menu (Enum) que será interpretada no switch abaixo.
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace gestor_de_estoque
 {
-    class Ebook : Produto
+    class Ebook : Produto, IEstoque
     {
         public string autor;
         private int vendas; //Aqui, de forma lógica não discutimos o estoque já que um Ebook é um produto digital.
@@ -17,6 +17,21 @@ namespace gestor_de_estoque
             this.preco = preco;
             this.autor = autor;
 
+        }
+
+        public void Exibir()
+        {
+            
+        }
+
+        public void RegistrarEntrada()
+        {
+           
+        }
+
+        public void RegistrarSaida()
+        {
+        
         }
     }
 }
