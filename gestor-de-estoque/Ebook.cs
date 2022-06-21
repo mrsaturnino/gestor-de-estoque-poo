@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace gestor_de_estoque
 {
+    [System.Serializable]
     class Ebook : Produto, IEstoque
     {
         public string autor;

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace gestor_de_estoque
 {
+    [System.Serializable] //Essa anotação passa para o C# que o tipo de dado "ProdutoFisico" pode ser salvo em arquivos.
+
     //ProdutoFisico é um tipo de produto e também uma classe Filha da classe Pai "Produto".
     class ProdutoFisico : Produto, IEstoque 
     {

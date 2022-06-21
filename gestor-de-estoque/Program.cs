@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 
 namespace gestor_de_estoque
@@ -90,7 +92,8 @@ namespace gestor_de_estoque
             //Criando um objeto que contém as informações das variáveis que foram alimentadas pelo usuário; O construtor criado para a classe auxilia ao passar estas informações.
             ProdutoFisico pf = new ProdutoFisico(nome, preco, frete);
             produtos.Add(pf); //aqui adicionamos o objeto criado à lista de produtos.
-            
+            Salvar();
+
             //Ou seja, toda vez que o usuário cadastrar um produto, será criado um objeto e este objeto será adicionado à lista.
         }
 
@@ -106,6 +109,7 @@ namespace gestor_de_estoque
             
             Ebook eb = new Ebook(nome, preco, autor);
             produtos.Add(eb);
+            Salvar();
         }
 
         static void CadastrarCurso()
@@ -120,6 +124,18 @@ namespace gestor_de_estoque
 
             Curso cs = new Curso(nome, preco, autor);
             produtos.Add(cs);
+            Salvar();
+        }
+
+        static void Salvar() //Método para salvamento dos dados no arquivo do programa.
+        {
+            //criando um arquivo binário no projeto
+            FileStream stream = new FileStream("produtos.dat", FileMode.OpenOrCreate); //"OpenOrCreate" para abrir o arquivo "produtos.dat" caso ele exista, ou criá-lo caso não exista.
+            BinaryFormatter encoder = new BinaryFormatter(); //pega os dados que serão salvos e os guarda de forma binária no arquivo.
+
+            encoder.Serialize(stream, produtos); //passando os dados que serão salvos no arquivo
+
+            stream.Close(); //fechando a operação de stream.
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace gestor_de_estoque
 {
+    [System.Serializable]
     abstract class Produto //Classe pai para todos os tipos de produtos que virão a serem criados.
         //É uma classe abstrata porque ela simplesmente vai ser uma base para a criação das outras. Classes abstratas não podem ser instanciadas.
     {
