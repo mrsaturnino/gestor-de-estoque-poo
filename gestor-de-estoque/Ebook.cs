@@ -25,18 +25,24 @@ namespace gestor_de_estoque
             Console.WriteLine($"Nome: {nome}");
             Console.WriteLine($"Autor: {autor}");
             Console.WriteLine($"Preço: {preco}");
-            Console.WriteLine($"Vagas restantes: {vendas}");
+            Console.WriteLine($"Vendas: {vendas}");
             Console.WriteLine("=============================");
         }
 
         public void RegistrarEntrada()
         {
-           
+            Console.WriteLine("Não é possível registrar entradas em um e-book.");
+            Console.ReadLine();
         }
 
         public void RegistrarSaida()
         {
-        
+            Console.WriteLine($"Registrar vendas do e-book {nome}");
+            Console.WriteLine("Digite a Qtd. de vendas: ");
+            int entrada = int.Parse(Console.ReadLine());
+            vendas = vendas - entrada;
+            Console.WriteLine("Venda(s) registrada(s).");
+            Console.ReadLine();
         }
     }
 }

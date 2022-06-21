@@ -17,6 +17,8 @@ namespace gestor_de_estoque
         enum Menu { Listar = 1, Adicionar, Remover, Entrada, Saida, Sair}
         static void Main(string[] args)
         {
+            Carregar();
+
             bool escolheuSair = false;
             while (!escolheuSair) //ENQUANTO o "while" for verdadeiro, o programa será executado.
             {
@@ -34,15 +36,19 @@ namespace gestor_de_estoque
                     switch (escolha)
                     {
                         case Menu.Listar:
+                            Listagem();
                             break;
                         case Menu.Adicionar:
                             Cadastro();
                             break;
                         case Menu.Remover:
+                            Remover();
                             break;
                         case Menu.Entrada:
+                            Entrada();
                             break;
                         case Menu.Saida:
+                            Saida();
                             break;
                         case Menu.Sair:
                             escolheuSair = true;
@@ -58,9 +64,58 @@ namespace gestor_de_estoque
             }
         }
 
+        static void Listagem() //Método para listagem de produtos
+        {
+            Console.WriteLine("LISTA DE PRODUTOS");
+            int i = 0; //var para a contagem do ID dos itens na lista
+            foreach (IEstoque produto in produtos) //para cada produto na lista de produtos faça:
+            {
+                Console.WriteLine("ID: " + i); //ID do produto
+                produto.Exibir();
+                i++; //cada vez que o foreach rodar um produto, será acrescentado um ID a ele
+            }
+            Console.ReadLine();
+        }
+
+        static void Remover() //Método para remoção de produtos através do ID
+        {
+            Listagem();
+            Console.WriteLine("Digite o ID do produto que deseja remover:");
+            int id = int.Parse(Console.ReadLine());
+            if(id >= 0 && id < produtos.Count)
+            {
+                produtos.RemoveAt(id);
+                Salvar();
+            }
+        }
+
+        static void Entrada() //Método para adicionar itens aos tipos de produtos pelo ID
+        {
+            Listagem();
+            Console.WriteLine("Digite o ID do produto que deseja registrar uma entrada:");
+            int id = int.Parse(Console.ReadLine());
+            if (id >= 0 && id < produtos.Count)
+            {
+                produtos[id].RegistrarEntrada();
+                Salvar();
+            }
+        }
+
+        static void Saida() //Método para remover itens dos tipos de produtos pelo ID
+        {
+            Listagem();
+            Console.WriteLine("Digite o ID do produto que deseja registrar uma saída:");
+            int id = int.Parse(Console.ReadLine());
+            if (id >= 0 && id < produtos.Count)
+            {
+                produtos[id].RegistrarSaida();
+                Salvar();
+            }
+        }
+
         static void Cadastro() //Método principal para o cadastramento geral de produtos.
         {
-            Console.WriteLine("Cadastro de Produto");
+            Console.WriteLine("CADASTRO DE PRODUTO");
             Console.WriteLine("1 - Produto Físico\n2 - Ebook\n3 - Curso");
             string opStr = Console.ReadLine();
             int escolhaInt = int.Parse(opStr);
@@ -90,6 +145,7 @@ namespace gestor_de_estoque
             float frete = float.Parse(Console.ReadLine());
 
             //Criando um objeto que contém as informações das variáveis que foram alimentadas pelo usuário; O construtor criado para a classe auxilia ao passar estas informações.
+
             ProdutoFisico pf = new ProdutoFisico(nome, preco, frete);
             produtos.Add(pf); //aqui adicionamos o objeto criado à lista de produtos.
             Salvar();
@@ -136,6 +192,33 @@ namespace gestor_de_estoque
             encoder.Serialize(stream, produtos); //passando os dados que serão salvos no arquivo
 
             stream.Close(); //fechando a operação de stream.
+        }
+
+
+
+        static void Carregar() //Puxando os dados salvos no arquivo; Essa função é a primeira a ser chamada ao executar o programa, para executar a lista
+        {
+            FileStream stream = new FileStream("produtos.dat", FileMode.OpenOrCreate);
+            BinaryFormatter encoder = new BinaryFormatter();
+
+            //O arquivo pode estar vazio ou conter algum dado errado, portanto
+            //tratamos disso com a estrutura try/catch.
+
+            try
+            {
+                produtos = (List<IEstoque>)encoder.Deserialize(stream); //o programa vai tentar ler o arquivo;
+
+                if(produtos == null) //caso a lista for nula, será criada uma nova
+                {
+                    produtos = new List<IEstoque>();
+                }
+
+            }
+            catch(Exception e) //qualquer erro que houver na lista de produtos, será criada uma nova lista também
+            {
+                produtos = new List<IEstoque>();
+            }
+            stream.Close();
         }
     }
 }

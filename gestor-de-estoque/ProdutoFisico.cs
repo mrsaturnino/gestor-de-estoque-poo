@@ -27,18 +27,28 @@ namespace gestor_de_estoque
             Console.WriteLine($"Nome: {nome}");
             Console.WriteLine($"Autor: {frete}");
             Console.WriteLine($"Preço: {preco}");
-            Console.WriteLine($"Vagas restantes: {estoque}");
+            Console.WriteLine($"Estoque: {estoque}");
             Console.WriteLine("=============================");
         }
 
         public void RegistrarEntrada()
         {
-            
+            Console.WriteLine($"Registrar entrada no estoque do produto {nome}");
+            Console.WriteLine("Digite a Qtd. que você quer dar entrada: ");
+            int entrada = int.Parse(Console.ReadLine());
+            estoque = estoque + entrada;
+            Console.WriteLine("Entrada registrada.");
+            Console.ReadLine();
         }
 
         public void RegistrarSaida()
         {
-            
+            Console.WriteLine($"Registrar saída do produto {nome} do estoque");
+            Console.WriteLine("Digite a Qtd. que você quer dar baixa: ");
+            int entrada = int.Parse(Console.ReadLine());
+            estoque = estoque - entrada;
+            Console.WriteLine("Baixa registrada.");
+            Console.ReadLine();
         }
     }
 }

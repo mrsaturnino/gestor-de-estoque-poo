@@ -31,12 +31,22 @@ namespace gestor_de_estoque
 
         public void RegistrarEntrada()
         {
-            
+            Console.WriteLine($"Adicionar vagas no curso {nome}");
+            Console.WriteLine("Digite a Qtd. de vagas que você quer dar entrada: ");
+            int entrada = int.Parse(Console.ReadLine());
+            vagas = vagas + entrada;
+            Console.WriteLine("Entrada registrada.");
+            Console.ReadLine();
         }
 
         public void RegistrarSaida()
         {
-            
+            Console.WriteLine($"Registrar preenchimento de vagas do curso {nome}");
+            Console.WriteLine("Digite a Qtd. de vagas preenchidas: ");
+            int entrada = int.Parse(Console.ReadLine());
+            vagas = vagas - entrada;
+            Console.WriteLine("Vaga(s) preenchida(s).");
+            Console.ReadLine();
         }
     }
 }
