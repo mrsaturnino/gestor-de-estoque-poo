@@ -34,6 +34,7 @@ namespace gestor_de_estoque
                         case Menu.Listar:
                             break;
                         case Menu.Adicionar:
+                            Cadastro();
                             break;
                         case Menu.Remover:
                             break;
@@ -51,7 +52,7 @@ namespace gestor_de_estoque
                     escolheuSair = true;
                 }
 
-                
+                Console.Clear(); 
             }
         }
 
@@ -65,14 +66,17 @@ namespace gestor_de_estoque
             switch (escolhaInt)
             {
                 case 1:
+                    CadastrarPFisico();
                     break;
                 case 2:
+                    CadastrarEbook();
                     break;
                 case 3:
+                    CadastrarCurso();
                     break;
             }
         }
-        //Métodos secundários para o cadastramento de cada produto
+        //Métodos secundários para o cadastramento de cada tipo produto
         static void CadastrarPFisico()
         {
             Console.WriteLine("CADASTRO DE PRODUTO FÍSICO");
@@ -83,8 +87,39 @@ namespace gestor_de_estoque
             Console.WriteLine("Frete: ");
             float frete = float.Parse(Console.ReadLine());
 
+            //Criando um objeto que contém as informações das variáveis que foram alimentadas pelo usuário; O construtor criado para a classe auxilia ao passar estas informações.
             ProdutoFisico pf = new ProdutoFisico(nome, preco, frete);
-            produtos.Add(pf);
+            produtos.Add(pf); //aqui adicionamos o objeto criado à lista de produtos.
+            
+            //Ou seja, toda vez que o usuário cadastrar um produto, será criado um objeto e este objeto será adicionado à lista.
+        }
+
+        static void CadastrarEbook()
+        {
+            Console.WriteLine("CADASTRO DE EBOOK");
+            Console.WriteLine("Nome: ");
+            string nome = Console.ReadLine();
+            Console.WriteLine("Preço: ");
+            float preco = float.Parse(Console.ReadLine());
+            Console.WriteLine("Autor: ");
+            string autor = Console.ReadLine();
+            
+            Ebook eb = new Ebook(nome, preco, autor);
+            produtos.Add(eb);
+        }
+
+        static void CadastrarCurso()
+        {
+            Console.WriteLine("CADASTRO DE CURSO");
+            Console.WriteLine("Nome: ");
+            string nome = Console.ReadLine();
+            Console.WriteLine("Preço: ");
+            float preco = float.Parse(Console.ReadLine());
+            Console.WriteLine("Autor: ");
+            string autor = Console.ReadLine();
+
+            Curso cs = new Curso(nome, preco, autor);
+            produtos.Add(cs);
         }
     }
 }
