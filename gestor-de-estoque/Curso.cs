@@ -24,7 +24,7 @@ namespace gestor_de_estoque
         {
             Console.WriteLine($"Nome: {nome}");
             Console.WriteLine($"Autor: {autor}");
-            Console.WriteLine($"Preço: {preco}");
+            Console.WriteLine($"Preço: R${preco}");
             Console.WriteLine($"Vagas restantes: {vagas}");
             Console.WriteLine("=============================");
         }

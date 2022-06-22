@@ -24,9 +24,10 @@ namespace gestor_de_estoque
 
         public void Exibir()
         {
+            Console.WriteLine();
             Console.WriteLine($"Nome: {nome}");
-            Console.WriteLine($"Autor: {frete}");
-            Console.WriteLine($"Preço: {preco}");
+            Console.WriteLine($"Autor: R${frete}");
+            Console.WriteLine($"Preço: R${preco}");
             Console.WriteLine($"Estoque: {estoque}");
             Console.WriteLine("=============================");
         }
